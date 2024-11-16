@@ -250,6 +250,13 @@ def concluir():
     lbl_validade.configure(text=validade)
 
 
+def validar_txt(nova):
+    # Regula a entrada da caixa de texto, limitando a quantidade de caracteres
+    if len(nova) > 20:
+        return False
+    return True
+
+
 padx = 5
 pady = 5
 
@@ -259,7 +266,7 @@ def desenhar_janela(prem):
 
     # Linha de widgets para a adição de proposições
     lbl_prop = Label(raiz, text='Proposição:')
-    txt_prop = Entry(raiz, width=30)
+    txt_prop = Entry(raiz, width=30, validate='key', validatecommand=(raiz.register(validar_txt), '%P'))
     btn_add['command'] = lambda: adicionar_proposicao(txt_prop.get())
     lbl_remover = Label(raiz, text='Remover proposição:')
     btn_remover = Button(raiz, text='Remover', command=lambda: remover_proposicao(remover_str_var.get()))
