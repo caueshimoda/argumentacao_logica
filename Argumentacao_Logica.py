@@ -48,8 +48,9 @@ cbo_entao5 = OptionMenu(raiz, entao5_str_var, *proposicoes)
 cbo_se_conclusao = OptionMenu(raiz, se_conclusao_var, *proposicoes)
 cbo_entao_conclusao = OptionMenu(raiz, entao_conclusao_var, *proposicoes)
 cbo_remover = OptionMenu(raiz, remover_str_var, *proposicoes)
-lbl_total = Label(raiz, text=f'Proposições adicionadas: 0. Máximo: {maximo}')
 
+# Inicialização de widgets que serão atualizados em funções
+lbl_total = Label(raiz, text=f'Proposições adicionadas: 0. Máximo: {maximo}')
 btn_concluir = Button(raiz, text='Checar validade', state='disabled')
 btn_add = Button(raiz, text='Adicionar')
 lbl_validade = Label(raiz, text='')
@@ -132,6 +133,7 @@ def atualizar_cbos():
 
 
 def atualizar_total():
+    # Atualiza o label que avisa quantas proposições foram adicionadas e o limite de adições.
     atual = len(proposicoes)
     if proposicoes[0] == padrao:
         atual = 0
@@ -170,6 +172,7 @@ def remover_proposicao(p):
 
 
 def adicionar_premissa():
+    # Limpa a janela e adiciona uma linha de premissa
     global premissas
     premissas += 1
     for widget in raiz.winfo_children():
@@ -178,6 +181,7 @@ def adicionar_premissa():
 
 
 def remover_premissa():
+    # Limpa a janela e remove uma linha de premissa
     global premissas
     premissas -= 1
     for widget in raiz.winfo_children():
@@ -186,6 +190,7 @@ def remover_premissa():
 
 
 def concluir():
+    # Avalia a validade da conclusão
     global premissas
     validade = ''
     mudanca = False
